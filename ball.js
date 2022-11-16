@@ -2,12 +2,12 @@ class Ball {
 	constructor(x, y, d) {
 		this.d = d; // Diameter
 		this.r = d / 2;
-		this.speed = 5;
+		this.s = 5; // Speed
 		this.g = 0.1; // Gravity
 		this.f = 0.1; // Friction
 
 		this.pos = createVector(x, y);
-		this.v = p5.Vector.random2D().mult(this.speed);
+		this.v = p5.Vector.random2D().mult(this.s);
 	}
 
 	update() {
@@ -52,9 +52,17 @@ class Ball {
 			other.pos.add(fixV);
 			this.pos.sub(fixV);
 
-			// Reflect the velocities off of the distance vector
-			other.v.reflect(distV).mult(1 - this.f);
-			this.v.reflect(distV).mult(1 - this.f);
+			let uV = distV.copy().normalize(); // Unit distance vector
+			let rV = p5.Vector.sub(this.v, other.v); // Relative velocity vector
+
+			let cS = p5.Vector.dot(uV, rV); // Collision speed (you can find the speed as rV's projection on uV, which apparently can be found with the help of dot product magic)
+			let cV = uV.copy().mult(cS); // Collision velocity
+
+			if (0 < cS) {
+				// Add and subtract the collision velocity accordingly
+				other.v.add(cV);
+				this.v.sub(cV);
+			}
 		}
 	}
 }
