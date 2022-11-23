@@ -1,7 +1,7 @@
 let balls = [];
 
 let density = 100; // kg/m^3 (even though we're two dimensional, this makes it possible to choose mass of real life objects)
-let meter = 10; // px
+let meter = 5; // px
 
 function setup() {
 	createCanvas(400, 400);
