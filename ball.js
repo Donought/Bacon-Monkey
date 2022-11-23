@@ -2,11 +2,9 @@ class Ball {
 	constructor(x, y, d) {
 		this.d = d; // Diameter
 		this.r = d / 2;
-		this.s = 0.1; // Speed (meters per frame)
-
-		this.g = 0.1; // Gravity (meters per frame)
-		this.f = 0.1; // Friction (percentage)
-		this.m = density * (4 / 3) * PI * this.r ** 3; // Mass
+		this.s = 5; // Speed
+		this.g = 0.1; // Gravity
+		this.f = 0.1; // Friction
 
 		this.pos = createVector(x, y);
 		this.v = p5.Vector.random2D().mult(this.s);
@@ -14,11 +12,11 @@ class Ball {
 
 	update() {
 		this.v.add(createVector(0, 0.1));
-		this.pos.add(p5.Vector.mult(this.v, meter));
+		this.pos.add(this.v);
 	}
 
 	display() {
-		circle(this.pos.x, this.pos.y, this.d * meter);
+		circle(this.pos.x, this.pos.y, this.d);
 	}
 
 	wallCheck() {
