@@ -1,10 +1,11 @@
 class Ball {
-	constructor(x, y, d) {
+	constructor(x, y, d, c) {
 		this.d = d; // Diameter
 		this.r = d / 2;
 		this.s = 5; // Speed
 		this.g = 0.1; // Gravity
 		this.f = 0.1; // Friction
+		this.c = c;
 
 		this.pos = createVector(x, y);
 		this.v = p5.Vector.random2D().mult(this.s);
@@ -16,6 +17,8 @@ class Ball {
 	}
 
 	display() {
+		stroke(this.c[1] - 100, this.c[1] - 100, this.c[0] - 100, 50);
+		fill(this.c[1], this.c[1], this.c[0], 50);
 		circle(this.pos.x, this.pos.y, this.d);
 	}
 

@@ -2,8 +2,8 @@ let balls = [];
 
 function setup() {
 	createCanvas(400, 400);
-	balls.push(new Ball((width / 4) * 1, height / 2, 50));
-	balls.push(new Ball((width / 4) * 3, height / 2, 50));
+	//balls.push(new Ball((width / 4) * 1, height / 2, 50));
+	//balls.push(new Ball((width / 4) * 3, height / 2, 50));
 }
 
 function draw() {
@@ -23,5 +23,5 @@ function draw() {
 }
 
 function keyPressed() {
-	balls.push(new Ball(width / 2, 25, 50));
+	balls.push(new Ball(width / 2, 25, 50, [random(200, 255), random(150, 200)]));
 }
